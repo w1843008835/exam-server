@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woniuxy.examserver.mapper.QuestionMapper">
+
+    <resultMap id="BaseResultMap" type="com.woniuxy.examserver.entity.Question">
+            <id property="id" column="id" />
+            <result property="title" column="title" />
+            <result property="questionType" column="question_type" />
+            <result property="difficulty" column="difficulty" />
+            <result property="analysis" column="analysis" />
+            <result property="examType" column="exam_type" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,title,question_type,difficulty,analysis,exam_type
+    </sql>
+</mapper>
