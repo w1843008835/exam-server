@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 /**
 * @author admin
 * @description 针对表【question_option(题目选项表)】的数据库操作Mapper
-* @createDate 2026-07-23 16:05:11
+* @createDate 2026-07-24 13:55:58
 * @Entity com.woniuxy.examserver.entity.QuestionOption
 */
 @Mapper

@@ -33,14 +33,14 @@ public class QuestionOption {
     private String optionContent;
 
     /**
-     * 是否正确答案：0否 1是
-     */
-    private Integer isAnswer;
-
-    /**
      * 选项展示顺序
      */
     private Integer sort;
+
+    /**
+     * 题库类型
+     */
+    private String examType;
 
     /**
      * 
@@ -99,20 +99,6 @@ public class QuestionOption {
     }
 
     /**
-     * 是否正确答案：0否 1是
-     */
-    public Integer getIsAnswer() {
-        return isAnswer;
-    }
-
-    /**
-     * 是否正确答案：0否 1是
-     */
-    public void setIsAnswer(Integer isAnswer) {
-        this.isAnswer = isAnswer;
-    }
-
-    /**
      * 选项展示顺序
      */
     public Integer getSort() {
@@ -124,6 +110,20 @@ public class QuestionOption {
      */
     public void setSort(Integer sort) {
         this.sort = sort;
+    }
+
+    /**
+     * 题库类型
+     */
+    public String getExamType() {
+        return examType;
+    }
+
+    /**
+     * 题库类型
+     */
+    public void setExamType(String examType) {
+        this.examType = examType;
     }
 
     @Override
@@ -142,8 +142,8 @@ public class QuestionOption {
             && (this.getQuestionId() == null ? other.getQuestionId() == null : this.getQuestionId().equals(other.getQuestionId()))
             && (this.getOptionCode() == null ? other.getOptionCode() == null : this.getOptionCode().equals(other.getOptionCode()))
             && (this.getOptionContent() == null ? other.getOptionContent() == null : this.getOptionContent().equals(other.getOptionContent()))
-            && (this.getIsAnswer() == null ? other.getIsAnswer() == null : this.getIsAnswer().equals(other.getIsAnswer()))
-            && (this.getSort() == null ? other.getSort() == null : this.getSort().equals(other.getSort()));
+            && (this.getSort() == null ? other.getSort() == null : this.getSort().equals(other.getSort()))
+            && (this.getExamType() == null ? other.getExamType() == null : this.getExamType().equals(other.getExamType()));
     }
 
     @Override
@@ -154,8 +154,8 @@ public class QuestionOption {
         result = prime * result + ((getQuestionId() == null) ? 0 : getQuestionId().hashCode());
         result = prime * result + ((getOptionCode() == null) ? 0 : getOptionCode().hashCode());
         result = prime * result + ((getOptionContent() == null) ? 0 : getOptionContent().hashCode());
-        result = prime * result + ((getIsAnswer() == null) ? 0 : getIsAnswer().hashCode());
         result = prime * result + ((getSort() == null) ? 0 : getSort().hashCode());
+        result = prime * result + ((getExamType() == null) ? 0 : getExamType().hashCode());
         return result;
     }
 
@@ -169,8 +169,8 @@ public class QuestionOption {
         sb.append(", questionId=").append(questionId);
         sb.append(", optionCode=").append(optionCode);
         sb.append(", optionContent=").append(optionContent);
-        sb.append(", isAnswer=").append(isAnswer);
         sb.append(", sort=").append(sort);
+        sb.append(", examType=").append(examType);
         sb.append("]");
         return sb.toString();
     }

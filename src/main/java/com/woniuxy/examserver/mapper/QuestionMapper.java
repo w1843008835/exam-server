@@ -1,8 +1,11 @@
 package com.woniuxy.examserver.mapper;
 
+import com.woniuxy.examserver.dto.QuestionUserAnswerDto;
 import com.woniuxy.examserver.entity.Question;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 /**
 * @author admin
@@ -12,6 +15,7 @@ import org.apache.ibatis.annotations.Mapper;
 */
 @Mapper
 public interface QuestionMapper extends BaseMapper<Question> {
+    List<QuestionUserAnswerDto> selectQuestionByExamType(String examType);
 
 }
 

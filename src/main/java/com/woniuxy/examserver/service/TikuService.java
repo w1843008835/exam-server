@@ -1,0 +1,17 @@
+package com.woniuxy.examserver.service;
+
+import com.woniuxy.examserver.dto.ExamDto;
+import com.woniuxy.examserver.entity.Tiku;
+import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
+
+/**
+* @author admin
+* @description 针对表【tiku(题库表)】的数据库操作Service
+* @createDate 2026-07-24 17:16:13
+*/
+public interface TikuService extends IService<Tiku> {
+
+    List<ExamDto> getTikus();
+}

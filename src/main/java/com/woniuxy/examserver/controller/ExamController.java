@@ -1,14 +1,13 @@
 package com.woniuxy.examserver.controller;
 
+import com.woniuxy.examserver.dto.QuestionRequest;
 import com.woniuxy.examserver.dto.R;
+import com.woniuxy.examserver.entity.Question;
 import com.woniuxy.examserver.service.QuestionService;
-import com.woniuxy.examserver.service.impl.QuestionServiceImpl;
+import com.woniuxy.examserver.service.TikuService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -16,16 +15,24 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/exam")
 public class ExamController {
     private final QuestionService questionService;
+    private final TikuService tikuService;
 
-    @GetMapping("exams")
+    @GetMapping("tiku")
     public R exams(){
-        return new R(questionService.getExams());
+        return new R(tikuService.getTikus());
     }
 
-    @GetMapping("questions/{examType}")
-    public R questions(@PathVariable("examType") String examType){
-        return new R(questionService.getQuestions(examType));
+    @PostMapping("/question")
+    public R question(@RequestBody QuestionRequest questionRequest){
+        return new R(questionService.getQuestion(questionRequest));
     }
+
+    @GetMapping("answerCard/{examType}")
+    public R answerCard(@PathVariable("examType") String examType){
+        return new R(questionService.getAnswerCard(examType));
+    }
+
+
 
 
 }

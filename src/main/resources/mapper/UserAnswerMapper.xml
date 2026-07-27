@@ -11,11 +11,11 @@
             <result property="examType" column="exam_type" />
             <result property="selectOptions" column="select_options" />
             <result property="isCorrect" column="is_correct" />
-            <result property="answerTime" column="answer_time" />
+            <result property="examType" column="exam_type" />
     </resultMap>
 
     <sql id="Base_Column_List">
         id,user_id,question_id,exam_type,select_options,is_correct,
-        answer_time
+        exam_type
     </sql>
 </mapper>

@@ -4,12 +4,13 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.util.Date;
+import lombok.Builder;
 
 /**
- * 用户答题记录
+ * 用户答题记录表
  * @TableName user_answer
  */
+@Builder
 @TableName(value ="user_answer")
 public class UserAnswer {
     /**
@@ -26,12 +27,7 @@ public class UserAnswer {
     /**
      * 题目ID
      */
-    private Long questionId;
-
-    /**
-     * 题库类型
-     */
-    private String examType;
+    private Integer questionId;
 
     /**
      * 用户选择的选项，逗号分隔 例:A,C
@@ -44,9 +40,9 @@ public class UserAnswer {
     private Integer isCorrect;
 
     /**
-     * 答题时间
+     * 题库类型
      */
-    private Date answerTime;
+    private String examType;
 
     /**
      * 
@@ -79,29 +75,15 @@ public class UserAnswer {
     /**
      * 题目ID
      */
-    public Long getQuestionId() {
+    public Integer getQuestionId() {
         return questionId;
     }
 
     /**
      * 题目ID
      */
-    public void setQuestionId(Long questionId) {
+    public void setQuestionId(Integer questionId) {
         this.questionId = questionId;
-    }
-
-    /**
-     * 题库类型
-     */
-    public String getExamType() {
-        return examType;
-    }
-
-    /**
-     * 题库类型
-     */
-    public void setExamType(String examType) {
-        this.examType = examType;
     }
 
     /**
@@ -133,17 +115,17 @@ public class UserAnswer {
     }
 
     /**
-     * 答题时间
+     * 题库类型
      */
-    public Date getAnswerTime() {
-        return answerTime;
+    public String getExamType() {
+        return examType;
     }
 
     /**
-     * 答题时间
+     * 题库类型
      */
-    public void setAnswerTime(Date answerTime) {
-        this.answerTime = answerTime;
+    public void setExamType(String examType) {
+        this.examType = examType;
     }
 
     @Override
@@ -161,10 +143,9 @@ public class UserAnswer {
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
             && (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()))
             && (this.getQuestionId() == null ? other.getQuestionId() == null : this.getQuestionId().equals(other.getQuestionId()))
-            && (this.getExamType() == null ? other.getExamType() == null : this.getExamType().equals(other.getExamType()))
             && (this.getSelectOptions() == null ? other.getSelectOptions() == null : this.getSelectOptions().equals(other.getSelectOptions()))
             && (this.getIsCorrect() == null ? other.getIsCorrect() == null : this.getIsCorrect().equals(other.getIsCorrect()))
-            && (this.getAnswerTime() == null ? other.getAnswerTime() == null : this.getAnswerTime().equals(other.getAnswerTime()));
+            && (this.getExamType() == null ? other.getExamType() == null : this.getExamType().equals(other.getExamType()));
     }
 
     @Override
@@ -174,10 +155,9 @@ public class UserAnswer {
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
         result = prime * result + ((getUserId() == null) ? 0 : getUserId().hashCode());
         result = prime * result + ((getQuestionId() == null) ? 0 : getQuestionId().hashCode());
-        result = prime * result + ((getExamType() == null) ? 0 : getExamType().hashCode());
         result = prime * result + ((getSelectOptions() == null) ? 0 : getSelectOptions().hashCode());
         result = prime * result + ((getIsCorrect() == null) ? 0 : getIsCorrect().hashCode());
-        result = prime * result + ((getAnswerTime() == null) ? 0 : getAnswerTime().hashCode());
+        result = prime * result + ((getExamType() == null) ? 0 : getExamType().hashCode());
         return result;
     }
 
@@ -190,10 +170,9 @@ public class UserAnswer {
         sb.append(", id=").append(id);
         sb.append(", userId=").append(userId);
         sb.append(", questionId=").append(questionId);
-        sb.append(", examType=").append(examType);
         sb.append(", selectOptions=").append(selectOptions);
         sb.append(", isCorrect=").append(isCorrect);
-        sb.append(", answerTime=").append(answerTime);
+        sb.append(", examType=").append(examType);
         sb.append("]");
         return sb.toString();
     }

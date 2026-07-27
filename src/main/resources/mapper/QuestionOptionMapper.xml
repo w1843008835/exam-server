@@ -9,8 +9,8 @@
             <result property="questionId" column="question_id" />
             <result property="optionCode" column="option_code" />
             <result property="optionContent" column="option_content" />
-            <result property="isAnswer" column="is_answer" />
             <result property="sort" column="sort" />
+        <result property="examType" column="exam_type" />
     </resultMap>
 
     <sql id="Base_Column_List">

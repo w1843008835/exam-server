@@ -8,12 +8,16 @@
             <id property="id" column="id" />
             <result property="title" column="title" />
             <result property="questionType" column="question_type" />
-            <result property="difficulty" column="difficulty" />
             <result property="analysis" column="analysis" />
             <result property="examType" column="exam_type" />
+            <result property="sort" column="sort" />
+            <result property="correctOptions" column="correct_options" />
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,title,question_type,difficulty,analysis,exam_type
+        id,title,question_type,difficulty,analysis,exam_type,sort,correct_options
     </sql>
+    <select id="selectQuestionByExamType" resultType="com.woniuxy.examserver.dto.QuestionUserAnswerDto">
+        select q.id,q.sort,u.is_correct from question as q left join user_answer as u on q.id=u.question_id where q.exam_type=#{examType};
+    </select>
 </mapper>

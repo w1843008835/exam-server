@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woniuxy.examserver.mapper.TikuMapper">
+
+    <resultMap id="BaseResultMap" type="com.woniuxy.examserver.entity.Tiku">
+            <id property="id" column="id" />
+            <result property="title" column="title" />
+            <result property="description" column="description" />
+            <result property="examType" column="exam_type" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,title,description,exam_type
+    </sql>
+    <select id="queryTikus" resultType="com.woniuxy.examserver.dto.ExamDto">
+        SELECT
+        t.id,
+        t.title,
+        t.description,
+        t.exam_type,
+        COUNT(*) AS question_count
+        FROM tiku AS t
+        INNER JOIN question q ON t.exam_type = q.exam_type
+        GROUP BY t.id, t.title, t.description, t.exam_type;
+    </select>
+</mapper>

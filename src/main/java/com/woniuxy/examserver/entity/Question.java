@@ -1,7 +1,6 @@
 package com.woniuxy.examserver.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
@@ -18,19 +17,24 @@ public class Question {
     private Long id;
 
     /**
+     * 题号
+     */
+    private Long sort;
+
+    /**
      * 题干内容
      */
     private String title;
 
     /**
-     * 题目类型：1单选 2多选
+     * 题目类型：单选 ,多选
      */
-    private Integer questionType;
+    private String questionType;
 
     /**
-     * 难度：1简单 2中等 3困难
+     * 正确的选项，逗号分隔 例:A,C
      */
-    private Integer difficulty;
+    private String correctOptions;
 
     /**
      * 答案解析
@@ -38,7 +42,7 @@ public class Question {
     private String analysis;
 
     /**
-     * 题库
+     * 题库类型
      */
     private String examType;
 
@@ -57,6 +61,20 @@ public class Question {
     }
 
     /**
+     * 题号
+     */
+    public Long getSort() {
+        return sort;
+    }
+
+    /**
+     * 题号
+     */
+    public void setSort(Long sort) {
+        this.sort = sort;
+    }
+
+    /**
      * 题干内容
      */
     public String getTitle() {
@@ -71,31 +89,31 @@ public class Question {
     }
 
     /**
-     * 题目类型：1单选 2多选
+     * 题目类型：单选 ,多选
      */
-    public Integer getQuestionType() {
+    public String getQuestionType() {
         return questionType;
     }
 
     /**
-     * 题目类型：1单选 2多选
+     * 题目类型：单选 ,多选
      */
-    public void setQuestionType(Integer questionType) {
+    public void setQuestionType(String questionType) {
         this.questionType = questionType;
     }
 
     /**
-     * 难度：1简单 2中等 3困难
+     * 正确的选项，逗号分隔 例:A,C
      */
-    public Integer getDifficulty() {
-        return difficulty;
+    public String getCorrectOptions() {
+        return correctOptions;
     }
 
     /**
-     * 难度：1简单 2中等 3困难
+     * 正确的选项，逗号分隔 例:A,C
      */
-    public void setDifficulty(Integer difficulty) {
-        this.difficulty = difficulty;
+    public void setCorrectOptions(String correctOptions) {
+        this.correctOptions = correctOptions;
     }
 
     /**
@@ -113,14 +131,14 @@ public class Question {
     }
 
     /**
-     * 题库
+     * 题库类型
      */
     public String getExamType() {
         return examType;
     }
 
     /**
-     * 题库
+     * 题库类型
      */
     public void setExamType(String examType) {
         this.examType = examType;
@@ -139,9 +157,10 @@ public class Question {
         }
         Question other = (Question) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
+            && (this.getSort() == null ? other.getSort() == null : this.getSort().equals(other.getSort()))
             && (this.getTitle() == null ? other.getTitle() == null : this.getTitle().equals(other.getTitle()))
             && (this.getQuestionType() == null ? other.getQuestionType() == null : this.getQuestionType().equals(other.getQuestionType()))
-            && (this.getDifficulty() == null ? other.getDifficulty() == null : this.getDifficulty().equals(other.getDifficulty()))
+            && (this.getCorrectOptions() == null ? other.getCorrectOptions() == null : this.getCorrectOptions().equals(other.getCorrectOptions()))
             && (this.getAnalysis() == null ? other.getAnalysis() == null : this.getAnalysis().equals(other.getAnalysis()))
             && (this.getExamType() == null ? other.getExamType() == null : this.getExamType().equals(other.getExamType()));
     }
@@ -151,9 +170,10 @@ public class Question {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
+        result = prime * result + ((getSort() == null) ? 0 : getSort().hashCode());
         result = prime * result + ((getTitle() == null) ? 0 : getTitle().hashCode());
         result = prime * result + ((getQuestionType() == null) ? 0 : getQuestionType().hashCode());
-        result = prime * result + ((getDifficulty() == null) ? 0 : getDifficulty().hashCode());
+        result = prime * result + ((getCorrectOptions() == null) ? 0 : getCorrectOptions().hashCode());
         result = prime * result + ((getAnalysis() == null) ? 0 : getAnalysis().hashCode());
         result = prime * result + ((getExamType() == null) ? 0 : getExamType().hashCode());
         return result;
@@ -166,9 +186,10 @@ public class Question {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
+        sb.append(", sort=").append(sort);
         sb.append(", title=").append(title);
         sb.append(", questionType=").append(questionType);
-        sb.append(", difficulty=").append(difficulty);
+        sb.append(", correctOptions=").append(correctOptions);
         sb.append(", analysis=").append(analysis);
         sb.append(", examType=").append(examType);
         sb.append("]");
