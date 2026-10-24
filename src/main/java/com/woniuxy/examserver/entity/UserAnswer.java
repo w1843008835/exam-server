@@ -27,7 +27,7 @@ public class UserAnswer {
     /**
      * 题目ID
      */
-    private Integer questionId;
+    private Long questionId;
 
     /**
      * 用户选择的选项，逗号分隔 例:A,C
@@ -75,14 +75,14 @@ public class UserAnswer {
     /**
      * 题目ID
      */
-    public Integer getQuestionId() {
+    public Long getQuestionId() {
         return questionId;
     }
 
     /**
      * 题目ID
      */
-    public void setQuestionId(Integer questionId) {
+    public void setQuestionId(Long questionId) {
         this.questionId = questionId;
     }
 

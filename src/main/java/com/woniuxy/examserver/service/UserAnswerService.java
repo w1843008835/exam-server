@@ -1,5 +1,6 @@
 package com.woniuxy.examserver.service;
 
+import com.woniuxy.examserver.dto.SubmitAnswerDTO;
 import com.woniuxy.examserver.entity.UserAnswer;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -9,5 +10,4 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @createDate 2026-07-24 16:41:03
 */
 public interface UserAnswerService extends IService<UserAnswer> {
-
 }

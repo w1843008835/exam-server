@@ -64,7 +64,7 @@ drop table user_answer;
 CREATE TABLE `user_answer` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `user_id` bigint NOT NULL COMMENT '用户ID',
-  `question_id` int NOT NULL COMMENT '题目ID',
+  `question_id` bigint NOT NULL COMMENT '题目ID',
   `select_options` varchar(255) NOT NULL COMMENT '用户选择的选项，逗号分隔 例:A,C',
   `is_correct` tinyint default NULL COMMENT '是否答对 0错1对',
   `exam_type` varchar(20) comment '题库类型',

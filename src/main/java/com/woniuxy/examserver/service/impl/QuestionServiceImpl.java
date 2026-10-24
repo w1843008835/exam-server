@@ -1,5 +1,6 @@
 package com.woniuxy.examserver.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.woniuxy.examserver.dto.*;
@@ -36,65 +37,6 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question>
 
 
     @Override
-    public List<QuestionDto> getQuestions(String examType) {
-
-//        List<Question> questions = list(Wrappers.lambdaQuery(Question.class)
-//                .eq(Question::getExamType, examType));
-//        List<QuestionOption> questionOptions = questionOptionService.list(
-//                Wrappers.lambdaQuery(QuestionOption.class)
-//                        .eq(QuestionOption::getExamType, examType));
-//        List<String> questionIds = questions.stream()
-//                .map(q -> String.valueOf(q.getId())).toList();
-//        List<UserAnswer> userAnswers = userAnswerService.list(
-//                Wrappers.lambdaQuery(UserAnswer.class)
-//                        .in(UserAnswer::getQuestionId, questionIds));
-//
-//        // 按 questionId 分组 options
-//        Map<Long, List<QuestionOption>> optionsMap = questionOptions.stream()
-//                .collect(Collectors.groupingBy(QuestionOption::getQuestionId));
-//
-//        // 按 questionId 映射 userAnswer
-//        Map<Long, UserAnswer> answerMap = userAnswers.stream()
-//                .collect(Collectors.toMap(UserAnswer::getQuestionId,
-//                        Function.identity(), (a, b) -> a));
-//
-//        // 组装 QuestionDto
-//        List<QuestionDto> questionDtos = new ArrayList<>();
-//        for (Question q : questions) {
-//            List<QuestionOption> opts = optionsMap.getOrDefault(q.getId(),
-//                    Collections.emptyList());
-//            UserAnswer ua = answerMap.get(q.getId());
-//
-//            // 选项 HashMap: optionCode -> optionContent
-//            HashMap<String, String> options = new HashMap<>();
-//            opts.forEach(o -> options.put(o.getOptionCode(), o.getOptionContent()));
-//
-//            String userAnser = userAnswers.stream()
-//            .filter(u->u.getQuestionId().equals(q.getId().toString()))
-//                    .findFirst()
-//                    .map(UserAnswer::getSelectOptions)
-//                    .orElse(null);
-//
-//
-//            QuestionDto dto = QuestionDto.builder()
-//                    .questionId(q.getId())
-//                    .sort(q.getSort().toString())
-//                    .title(q.getTitle())
-//                    .questionType(q.getQuestionType())
-//                    .options(options)
-//                    .correctAnswer(q.getCorrectOptions())
-//                    .analysis(q.getAnalysis())
-//                    .userAnswer(userAnser)
-//                    .build();
-//
-//            questionDtos.add(dto);
-//        }
-//
-//        return questionDtos;
-        return null;
-    }
-
-    @Override
     public QuestionDto getQuestion(QuestionRequest questionRequest) {
         Integer questionNum = questionRequest.getQuestionNumber();
         String examType = questionRequest.getExamType();
@@ -109,7 +51,7 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question>
         if(answer != null && userAnswerObj==null){
             UserAnswer userAnswer= UserAnswer.builder()
                             .userId(questionRequest.getUserId())
-                    .questionId(questionNum)
+                    .questionId(Long.valueOf(questionNum))
                     .selectOptions(answer)
                     .examType(examType)
                     .isCorrect(answer.equals(question.getCorrectOptions())?1:0)
@@ -183,6 +125,15 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question>
                 .options(options)
                 .build();
         return answerCardDto;
+    }
+
+    @Override
+    public String reset(ResetDto resetDto) {
+        LambdaUpdateWrapper<UserAnswer> wrapper = Wrappers.lambdaUpdate();
+        wrapper.eq(UserAnswer::getUserId, resetDto.getUserId())
+                .eq(UserAnswer::getExamType, resetDto.getExamType());
+        userAnswerService.remove(wrapper);
+        return "";
     }
 }
 
